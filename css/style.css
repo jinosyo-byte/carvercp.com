@@ -159,12 +159,27 @@ a {
 .product-card-specs { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
 .product-card-specs span { color: #888; margin-right: 10px; font-weight: 600; }
 
-.product-card-image {
-    flex: 1;
-    height: 240px;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #000;
+/* 오른쪽 이미지 박스 (정사각형 비율 고정) */
+.product .product-card-image {
+    flex: 0 0 320px !important; /* 이미지 박스 가로 크기 고정 */
+    width: 320px !important;
+    height: 320px !important; /* 가로/세로 동일한 1:1 정사각형 */
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background-color: #f8f9fa !important; /* 여백 발생 시 깔끔한 연회색 배경 */
+    border: 1px solid #eee !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 정사각형 박스 안에 기계 전체가 깔끔하게 들어가도록 설정 */
+.product .product-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* 비율을 유지하면서 정사각형 상자 안에 전체 모습을 보여줌 */
+    padding: 12px !important; /* 기계 테두리가 상자에 너무 붙지 않게 약간의 여백 부여 */
+    display: block !important;
 }
 
 .placeholder-graphic {
