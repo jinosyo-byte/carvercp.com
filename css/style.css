@@ -265,7 +265,7 @@ img {
 
 
 /* ========================================
-   PRODUCT (좌측: 설명 / 우측: 이미지) - 최종 수정
+   PRODUCT (좌측: 설명 / 우측: 이미지)
 ======================================== */
 
 .product {
@@ -279,42 +279,47 @@ img {
     margin-top: 40px;
 }
 
-.product-card {
+/* PRODUCT 영역 전용 카드 배치 */
+.product .product-card {
     background-color: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     padding: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 32px !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.product-info {
-    flex: 1;
+.product .product-info {
+    flex: 1 !important;
+    min-width: 0 !important;
 }
 
-/* 이미지 박스 세로 높이 지정 (필요 시 360px 숫자를 400px 등으로 조절) */
-.product-image {
-    flex: 1.5;
-    width: 100%;
-    height: 360px;
-    border-radius: 8px;
-    overflow: hidden;
+/* 우측 이미지 프레임 세로 높이 설정 */
+.product .product-image {
+    flex: 1.3 !important;
+    width: 100% !important;
+    height: 380px !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
 }
 
-/* 박스에 맞춰 위아래 세로 길이를 늘려서 채움 */
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    display: block;
+/* 박스 세로 크기(380px)에 맞춰 위아래 늘려서 꽉 채움 */
+.product .product-image img,
+.product .product-card > img {
+    width: 100% !important;
+    height: 380px !important;
+    max-height: none !important;
+    object-fit: fill !important;
+    display: block !important;
 }
 
 
 /* ========================================
-   PORTFOLIO / GRID
+   PORTFOLIO / GRID (3열/4열 카드)
 ======================================== */
 
 .portfolio-grid,
@@ -335,10 +340,14 @@ img {
     height: 100%;
 }
 
+/* PORTFOLIO 이미지 정상 표시 설정 */
+.portfolio-grid img,
+.card-grid img,
 .grid-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
+    width: 100% !important;
+    height: 220px !important;
+    object-fit: cover !important;
+    display: block !important;
 }
 
 .grid-card-body {
@@ -347,38 +356,4 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-/* PRODUCT 카드 레이아웃 및 이미지 세로 크기 확정 수정 */
-
-.product-card {
-    display: flex !important;
-    flex-direction: row !important;  /* 좌우 배치 강제 유지 */
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 32px !important;
-}
-
-/* 왼쪽 텍스트 영역 */
-.product-card > div:first-child,
-.product-info {
-    flex: 1 !important;
-    min-width: 0 !important;
-}
-
-/* 오른쪽 이미지 영역 (가로/세로 비율 제어) */
-.product-card > div:last-child,
-.product-image {
-    flex: 1.3 !important;           /* 이미지 가로 폭 비율 */
-    height: 380px !important;       /* 원하는 세로 높이 설정 */
-    border-radius: 8px !important;
-    overflow: hidden !important;
-}
-
-/* 이미지 원본 강제 늘림 (위아래 세로 길이를 100% 채움) */
-.product-card img {
-    width: 100% !important;
-    height: 380px !important;       /* 세로 높이를 상자 크기에 강제로 맞춤 */
-    max-height: none !important;
-    object-fit: fill !important;    /* 위아래 늘려서 꽉 채움 (잘림 없음) */
-    display: block !important;
 }
