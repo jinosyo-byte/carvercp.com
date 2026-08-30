@@ -15,7 +15,8 @@
             <a href="index.html" class="logo">CARVER</a>
             <nav class="nav">
                 <a href="#about">회사소개</a>
-                <a href="#product">제품소개</a>
+                <!-- 별도 페이지인 product.html로 이동하도록 수정 -->
+                <a href="product.html">제품소개</a>
                 <a href="#service">사업소개</a>
                 <a href="#portfolio">포트폴리오</a>
                 <a href="#contact">문의하기</a>
@@ -32,7 +33,8 @@
                 <h1>스티로폼 가공에 관한 모든 가공기를<br>제작·판매합니다.</h1>
                 <p class="hero-description">카버는 스티로폼 전용 가공기를 100% 국내 기술과 제작으로 만들어갑니다.</p>
                 <div class="hero-buttons">
-                    <a href="#product" class="button button-white">제품 살펴보기</a>
+                    <!-- 버튼 클릭 시 제품 페이지로 이동 -->
+                    <a href="product.html" class="button button-white">제품 살펴보기</a>
                     <a href="#contact" class="button button-outline">제작 문의</a>
                 </div>
             </div>
@@ -59,60 +61,7 @@
             </div>
         </section>
 
-        <!-- PRODUCT -->
-        <section id="product" class="section product">
-            <div class="container">
-                <div class="section-title">
-                    <p class="section-label">CARVER MACHINE</p>
-                    <h2>카버 제품 라인업</h2>
-                </div>
-
-                <div class="product-grid">
-                    <article class="product-card">
-                        <div class="product-card-info">
-                            <span class="product-card-label">PRODUCT 01 · CUSTOM MADE</span>
-                            <h3>스티로폼 전용 2축 열선커팅기</h3>
-                            <p>작업 환경과 가공 크기에 맞춰 주문 제작이 가능한 스티로폼 열선 커팅 장비입니다.</p>
-                            <ul class="product-card-specs">
-                                <li><span>기본 모델</span> 1800 × 1800 × 1200 mm</li>
-                                <li><span>가공 방식</span> 열선 커팅</li>
-                            </ul>
-                        </div>
-                        <div class="product-card-image">
-                            <!-- SVG 방식을 사용하여 이미지 깨짐 없는 플레이스홀더 제공 -->
-                            <svg class="placeholder-graphic" viewBox="0 0 400 250" preserveAspectRatio="none">
-                                <rect width="100%" height="100%" fill="#1a1a1a"/>
-                                <circle cx="200" cy="110" r="45" fill="none" stroke="#444" stroke-width="4"/>
-                                <path d="M 120 180 L 280 180 M 200 60 L 200 160" stroke="#ff4d4d" stroke-width="3"/>
-                                <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" fill="#888" font-size="14">CARVER PRODUCT 01</text>
-                            </svg>
-                        </div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-card-info">
-                            <span class="product-card-label">PRODUCT 02 · CUSTOM MADE</span>
-                            <h3>스티로폼 전용 4축 열선커팅기</h3>
-                            <p>복잡한 입체 형상 가공을 위한 고정밀 4축 제어 방식의 열선 가공 장비입니다.</p>
-                            <ul class="product-card-specs">
-                                <li><span>가공 방식</span> 4축 서보 동기 제어</li>
-                                <li><span>제작 방식</span> 주문 제작</li>
-                            </ul>
-                        </div>
-                        <div class="product-card-image">
-                            <svg class="placeholder-graphic" viewBox="0 0 400 250" preserveAspectRatio="none">
-                                <rect width="100%" height="100%" fill="#1a1a1a"/>
-                                <circle cx="200" cy="110" r="45" fill="none" stroke="#444" stroke-width="4"/>
-                                <path d="M 130 80 L 270 140 M 130 140 L 270 80" stroke="#ff4d4d" stroke-width="3"/>
-                                <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" fill="#888" font-size="14">CARVER PRODUCT 02</text>
-                            </svg>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- PORTFOLIO (새로운 깨짐 없는 모던 카드 디자인 방식) -->
+        <!-- PORTFOLIO -->
         <section id="portfolio" class="section portfolio">
             <div class="container">
                 <div class="section-title">
