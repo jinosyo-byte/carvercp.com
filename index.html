@@ -7,7 +7,7 @@
     <meta name="description" content="카버는 정밀 CNC 가공과 맞춤 제작을 전문으로 하는 기업입니다.">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* 문의 게시판 전용 고정 스타일 */
+        /* 문의 게시판 및 모바일 전용 반응형 스타일 */
         .contact-section-custom {
             background-color: #f8f9fa !important;
             padding: 80px 20px !important;
@@ -56,6 +56,7 @@
             transition: border-color 0.2s, box-shadow 0.2s !important;
             background-color: #fff !important;
             color: #333 !important;
+            -webkit-appearance: none;
         }
         .input-custom:focus, .textarea-custom:focus {
             border-color: #111 !important;
@@ -87,7 +88,7 @@
             align-items: center !important;
             margin-bottom: 20px !important;
             flex-wrap: wrap !important;
-            gap: 10px !important;
+            gap: 12px !important;
         }
         .admin-header-custom h3 {
             margin: 0 !important;
@@ -95,13 +96,34 @@
             font-weight: 700 !important;
             color: #111 !important;
         }
-        @media (max-width: 600px) {
-            .form-row {
-                flex-direction: column !important;
-                gap: 20px !important;
+
+        /* 📱 모바일 디바이스(768px 이하) 대응 스타일 */
+        @media (max-width: 768px) {
+            .contact-section-custom {
+                padding: 50px 15px !important;
             }
             .contact-card {
                 padding: 24px 16px !important;
+                border-radius: 10px !important;
+            }
+            .form-row {
+                flex-direction: column !important;
+                gap: 16px !important;
+                margin-bottom: 16px !important;
+            }
+            .admin-header-custom {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+            .admin-header-custom #adminAuthArea {
+                width: 100% !important;
+                justify-content: space-between !important;
+            }
+            .admin-header-custom #adminAuthArea input {
+                flex: 1 !important;
+            }
+            .section-title h2 {
+                font-size: 26px !important;
             }
         }
     </style>
@@ -185,11 +207,10 @@
         <!-- CONTACT -->
         <section id="contact" class="contact-section-custom">
             <div class="container">
-                <div class="section-title" style="text-align: center; margin-bottom: 40px;">
-                    <!-- 영문 라벨 색상 선명하게 수정 -->
+                <div class="section-title" style="text-align: center; margin-bottom: 30px;">
                     <p class="section-label" style="color: #666666 !important; font-weight: 700; letter-spacing: 1px;">GUESTBOOK / CONTACT</p>
-                    <h2 style="font-size: 32px; font-weight: bold; margin-top: 8px;">장비 제작 문의 게시판</h2>
-                    <p style="margin-top: 10px; color: #666; font-size: 15px;">작성하신 문의는 비공개 처리되며, 관리자만 확인할 수 있습니다.</p>
+                    <h2 style="font-weight: bold; margin-top: 8px;">장비 제작 문의 게시판</h2>
+                    <p style="margin-top: 10px; color: #666; font-size: 14px;">작성하신 문의는 비공개 처리되며, 관리자만 확인할 수 있습니다.</p>
                 </div>
 
                 <div class="contact-card">
@@ -258,7 +279,7 @@
                 if (inputPw === ADMIN_PASSWORD) {
                     isAdmin = true;
                     alert('관리자로 인증되었습니다. 비공개 문의 내용을 확인하실 수 있습니다.');
-                    document.getElementById('adminAuthArea').innerHTML = '<span style="color:#e63946; font-weight:bold; font-size:14px; background:#ffe3e3; padding:6px 12px; border-radius:20px;">● 관리자 로그인 중</span>';
+                    document.getElementById('adminAuthArea').innerHTML = '<span style="color:#e63946; font-weight:bold; font-size:13px; background:#ffe3e3; padding:6px 12px; border-radius:20px;">● 관리자 로그인 중</span>';
                     loadMemos();
                 } else {
                     alert('비밀번호가 일치하지 않습니다.');
@@ -276,23 +297,23 @@
 
                 memos.forEach((memo, index) => {
                     const memoItem = document.createElement('div');
-                    memoItem.style.cssText = "background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 18px 20px; margin-bottom: 12px; position: relative; text-align: left;";
+                    memoItem.style.cssText = "background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; margin-bottom: 12px; position: relative; text-align: left;";
 
                     if (isAdmin) {
                         memoItem.innerHTML = `
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                                 <strong style="font-size: 15px; color: #111;">${escapeHtml(memo.writer)}</strong>
-                                <span style="font-size: 12px; color: #888;">${memo.date}</span>
+                                <span style="font-size: 11px; color: #888;">${memo.date}</span>
                             </div>
-                            <div style="font-size: 13px; color: #e63946; font-weight: 600; margin-bottom: 10px;">연락처/메일: ${escapeHtml(memo.contactInfo)}</div>
-                            <div style="font-size: 14px; color: #333; line-height: 1.6; white-space: pre-line; background: #fff; padding: 12px; border-radius: 6px; border: 1px solid #eee;">${escapeHtml(memo.content)}</div>
-                            <button onclick="deleteMemo(${index})" style="position: absolute; top: 18px; right: 20px; background: none; border: none; color: #aaa; font-size: 12px; cursor: pointer; text-decoration: underline;">삭제</button>
+                            <div style="font-size: 13px; color: #e63946; font-weight: 600; margin-bottom: 8px;">연락처/메일: ${escapeHtml(memo.contactInfo)}</div>
+                            <div style="font-size: 14px; color: #333; line-height: 1.5; white-space: pre-line; background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #eee;">${escapeHtml(memo.content)}</div>
+                            <button onclick="deleteMemo(${index})" style="position: absolute; top: 14px; right: 14px; background: none; border: none; color: #aaa; font-size: 12px; cursor: pointer; text-decoration: underline;">삭제</button>
                         `;
                     } else {
                         memoItem.innerHTML = `
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <strong style="font-size: 15px; color: #333;">${maskName(memo.writer)}</strong>
-                                <span style="font-size: 12px; color: #aaa;">${memo.date}</span>
+                                <strong style="font-size: 14px; color: #333;">${maskName(memo.writer)}</strong>
+                                <span style="font-size: 11px; color: #aaa;">${memo.date}</span>
                             </div>
                             <div style="font-size: 13px; color: #888; margin-top: 6px;">
                                 🔒 비공개 문의글입니다. (관리자만 내용 확인 가능)
