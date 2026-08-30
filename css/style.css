@@ -265,84 +265,94 @@ img {
 
 
 /* ========================================
-   PRODUCT
+   PRODUCT (좌측: 설명 / 우측: 이미지)
 ======================================== */
 
 .product {
     background: #f5f5f5;
 }
 
-.product-content {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 80px;
-    margin-top: 80px;
-}
-
-.product-image {
-    min-height: 500px;
+.product-grid {
     display: flex;
-    align-items: flex-end;
-    padding: 35px;
-    color: #fff;
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.1),
-            rgba(0, 0, 0, 0.6)
-        ),
-        url("../images/machine.jpg") center / cover no-repeat;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 40px;
 }
 
-.product-image span {
-    font-size: 12px;
+.product-card {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.product-card-info {
+    flex: 1;
+}
+
+.product-card-label {
+    display: inline-block;
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    color: #004d40;
+    margin-bottom: 8px;
 }
 
-.product-info {
-    padding-top: 10px;
-}
-
-.product-label {
-    margin-bottom: 15px;
-    color: #777;
-    font-size: 13px;
+.product-card-info h3 {
+    font-size: 1.5rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    color: #111827;
+    margin-bottom: 12px;
 }
 
-.product-info h3 {
-    margin-bottom: 25px;
-    font-size: 36px;
-    line-height: 1.25;
-    letter-spacing: -1.5px;
+.product-card-info p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
-.product-info > p {
-    margin-bottom: 35px;
-    color: #666;
-    line-height: 1.8;
+.product-card-specs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 16px;
 }
 
-.spec-list {
-    border-top: 1px solid #ccc;
+.product-card-specs li {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 6px;
 }
 
-.spec-item {
+.product-card-specs li span {
+    color: #9ca3af;
+    display: inline-block;
+    width: 90px;
+}
+
+.product-card-image {
+    width: 320px;
+    height: 220px;
+    flex-shrink: 0;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
+    justify-content: center;
 }
 
-.spec-item span {
-    color: #777;
-}
-
-.spec-item strong {
-    font-weight: 600;
+.product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
@@ -564,7 +574,7 @@ img {
 
 
 /* ========================================
-   MOBILE (휴대폰 완벽 대응)
+   MOBILE (휴대폰 대응)
 ======================================== */
 
 @media (max-width: 768px) {
@@ -661,24 +671,15 @@ img {
     }
 
     /* PRODUCT */
-    .product-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-top: 40px;
-    }
-
-    .product-image {
-        min-height: 280px;
+    .product-card {
+        flex-direction: column-reverse;
         padding: 20px;
+        gap: 20px;
     }
 
-    .product-info h3 {
-        font-size: 26px;
-        letter-spacing: -1px;
-    }
-
-    .spec-item {
-        font-size: 13px;
+    .product-card-image {
+        width: 100%;
+        height: 200px;
     }
 
     /* SERVICE */
@@ -735,104 +736,5 @@ img {
 
     .contact h2 {
         font-size: 32px;
-    }
-}
-/* ==========================================
-   PRODUCT CARD LAYOUT (좌측: 설명 / 우측: 이미지)
-   ========================================== */
-.product-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    margin-top: 40px;
-}
-
-.product-card {
-    background-color: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-/* 좌측 텍스트 영역 */
-.product-card-info {
-    flex: 1;
-}
-
-.product-card-label {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #004d40;
-    margin-bottom: 8px;
-}
-
-.product-card-info h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 12px;
-}
-
-.product-card-info p {
-    font-size: 0.95rem;
-    color: #4b5563;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.product-card-specs {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid #f3f4f6;
-    padding-top: 16px;
-}
-
-.product-card-specs li {
-    font-size: 0.9rem;
-    color: #374151;
-    margin-bottom: 6px;
-}
-
-.product-card-specs li span {
-    color: #9ca3af;
-    display: inline-block;
-    width: 90px;
-}
-
-/* 우측 이미지 영역 */
-.product-card-image {
-    width: 320px;
-    height: 220px;
-    flex-shrink: 0;
-    background-color: #f3f4f6;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.product-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 이미지 비율에 맞춰 꽉 채움 */
-}
-
-/* 모바일 화면 대응 */
-@media (max-width: 768px) {
-    .product-card {
-        flex-direction: column-reverse; /* 모바일에서는 이미지가 위, 글이 아래 */
-        padding: 20px;
-    }
-    .product-card-image {
-        width: 100%;
-        height: 200px;
     }
 }
