@@ -83,15 +83,52 @@
             </div>
         </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="contact">
-            <div class="container contact-inner">
-                <div>
-                    <p class="section-label">CONTACT</p>
-                    <h2>제작이 필요하신가요?</h2>
-                    <p>제품 제작 및 CNC 가공에 대해 편하게 문의해주세요.</p>
+        <!-- CONTACT (관리자 전용 비공개 메모장) -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-title">
+                    <p class="section-label">GUESTBOOK / CONTACT</p>
+                    <h2>장비 제작 문의 게시판</h2>
+                    <p style="margin-top: 8px; color: #666;">작성하신 문의는 비공개 처리되며, 관리자만 확인할 수 있습니다.</p>
                 </div>
-                <a href="#contact" class="button button-dark">문의하기</a>
+
+                <div class="contact-wrapper">
+                    <!-- 문의 작성 폼 -->
+                    <form id="memoForm" class="contact-form">
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="writer">작성자 / 업체명 *</label>
+                                <input type="text" id="writer" placeholder="홍길동" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactInfo">연락처 또는 이메일 *</label>
+                                <input type="text" id="contactInfo" placeholder="010-0000-0000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memoContent">문의 내용 *</label>
+                            <textarea id="memoContent" rows="4" placeholder="가공 목적, 작업 크기, 필요한 축 수 등을 남겨주세요." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">문의 남기기 (비공개)</button>
+                    </form>
+
+                    <!-- 문의 목록 및 관리자 인증 영역 -->
+                    <div class="memo-list-wrapper">
+                        <div class="admin-header">
+                            <h3>등록된 문의 목록</h3>
+                            <div id="adminAuthArea">
+                                <input type="password" id="adminPwInput" placeholder="관리자 비밀번호" style="width: 130px; padding: 6px; font-size: 12px; display: inline-block;">
+                                <button type="button" onclick="checkAdmin()" style="padding: 6px 10px; font-size: 12px; cursor: pointer; background: #111; color: #fff; border: none; border-radius: 4px;">관리자 확인</button>
+                            </div>
+                        </div>
+
+                        <div id="memoList" class="memo-list">
+                            <!-- 비공개 글 목록 들어가는 곳 -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -104,5 +141,119 @@
             <p class="copyright">© 2026 CARVER. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- 비공개 메모장 작동 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ADMIN_PASSWORD = "carver3156"; // <-- 관리자 비밀번호 (원하시는 비밀번호로 변경하세요)
+            let isAdmin = false;
+
+            const memoForm = document.getElementById('memoForm');
+            const memoList = document.getElementById('memoList');
+
+            // 관리자 로그인 확인
+            window.checkAdmin = function() {
+                const inputPw = document.getElementById('adminPwInput').value;
+                if (inputPw === ADMIN_PASSWORD) {
+                    isAdmin = true;
+                    alert('관리자로 인증되었습니다. 비공개 문의 내용을 확인하실 수 있습니다.');
+                    document.getElementById('adminAuthArea').innerHTML = '<span style="color:#ff4d4d; font-weight:bold; font-size:13px;">[관리자 로그인 상태]</span>';
+                    loadMemos();
+                } else {
+                    alert('비밀번호가 일치하지 않습니다.');
+                }
+            };
+
+            // 메모 목록 불러오기 (비공개 처리)
+            function loadMemos() {
+                const memos = JSON.parse(localStorage.getItem('carverMemos')) || [];
+                memoList.innerHTML = '';
+
+                if (memos.length === 0) {
+                    memoList.innerHTML = '<p class="no-memo" style="text-align:center; color:#999; padding:20px 0;">등록된 문의 내역이 없습니다.</p>';
+                    return;
+                }
+
+                memos.forEach((memo, index) => {
+                    const memoItem = document.createElement('div');
+                    memoItem.className = 'memo-item';
+                    memoItem.style.cssText = "background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; margin-bottom: 12px; position: relative;";
+
+                    if (isAdmin) {
+                        // 관리자에게 보이는 화면 (전체 내역 공개)
+                        memoItem.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                <strong style="font-size: 15px; color: #222;">${escapeHtml(memo.writer)}</strong>
+                                <span style="font-size: 12px; color: #888;">${memo.date}</span>
+                            </div>
+                            <div style="font-size: 13px; color: #ff4d4d; font-weight: bold; margin-bottom: 8px;">연락처/메일: ${escapeHtml(memo.contactInfo)}</div>
+                            <div style="font-size: 14px; color: #444; line-height: 1.5; white-space: pre-line;">${escapeHtml(memo.content)}</div>
+                            <button onclick="deleteMemo(${index})" style="position: absolute; bottom: 12px; right: 12px; background: none; border: none; color: #aaa; font-size: 12px; cursor: pointer;">삭제</button>
+                        `;
+                    } else {
+                        // 일반 방문자에게 보이는 화면 (비공개 처리)
+                        memoItem.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                <strong style="font-size: 15px; color: #222;">${maskName(memo.writer)}</strong>
+                                <span style="font-size: 12px; color: #888;">${memo.date}</span>
+                            </div>
+                            <div style="font-size: 14px; color: #888; font-style: italic;">
+                                🔒 비공개 문의글입니다. (관리자만 내용 확인 가능)
+                            </div>
+                        `;
+                    }
+                    memoList.appendChild(memoItem);
+                });
+            }
+
+            // 문의 저장
+            memoForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const writer = document.getElementById('writer').value;
+                const contactInfo = document.getElementById('contactInfo').value;
+                const content = document.getElementById('memoContent').value;
+                const date = new Date().toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                const memos = JSON.parse(localStorage.getItem('carverMemos')) || [];
+                memos.unshift({ writer, contactInfo, content, date });
+                localStorage.setItem('carverMemos', JSON.stringify(memos));
+
+                alert('문의가 접수되었습니다. 관리자 확인 후 연락드리겠습니다.');
+                memoForm.reset();
+                loadMemos();
+            });
+
+            // 문의 삭제 (관리자)
+            window.deleteMemo = function (index) {
+                if (confirm('이 문의글을 삭제하시겠습니까?')) {
+                    const memos = JSON.parse(localStorage.getItem('carverMemos')) || [];
+                    memos.splice(index, 1);
+                    localStorage.setItem('carverMemos', JSON.stringify(memos));
+                    loadMemos();
+                }
+            };
+
+            // 이름 마스킹 (홍*동)
+            function maskName(name) {
+                if (name.length <= 1) return name;
+                if (name.length === 2) return name[0] + '*';
+                return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
+            }
+
+            // 보안 문자 변환
+            function escapeHtml(str) {
+                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            }
+
+            loadMemos();
+        });
+    </script>
 </body>
 </html>
