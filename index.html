@@ -7,6 +7,24 @@
     <meta name="description" content="카버는 정밀 CNC 가공과 맞춤 제작을 전문으로 하는 기업입니다.">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        /* 추가 반응형 및 커스텀 스타일 */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
         /* 문의 게시판 및 모바일 전용 반응형 스타일 */
         .contact-section-custom {
             background-color: #f8f9fa !important;
@@ -99,6 +117,31 @@
 
         /* 📱 모바일 디바이스(768px 이하) 대응 스타일 */
         @media (max-width: 768px) {
+            .menu-button {
+                display: block !important;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            .nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                border-top: 1px solid #eee;
+            }
+            .nav.active {
+                display: flex !important;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
             .contact-section-custom {
                 padding: 50px 15px !important;
             }
@@ -134,14 +177,14 @@
     <header class="header">
         <div class="container header-inner">
             <a href="index.html" class="logo">CARVER</a>
-            <nav class="nav">
+            <nav class="nav" id="mainNav">
                 <a href="index.html#about">회사소개</a>
                 <a href="index.html#service">사업소개</a>
                 <a href="product.html">제품소개</a>
                 <a href="portfolio.html">포트폴리오</a>
                 <a href="index.html#contact">문의하기</a>
             </nav>
-            <button type="button" class="menu-button" aria-label="메뉴 열기">☰</button>
+            <button type="button" class="menu-button" id="menuToggle" aria-label="메뉴 열기">☰</button>
         </div>
     </header>
 
@@ -265,10 +308,21 @@
         </div>
     </footer>
 
-    <!-- 비공개 메모장 스크립트 -->
+    <!-- 자바스크립트 -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const ADMIN_PASSWORD = "carver1234"; // 관리자 비밀번호
+            // 모바일 메뉴 토글
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                });
+            }
+
+            // 비공개 메모장 스크립트
+            const ADMIN_PASSWORD = "carver1234";
             let isAdmin = false;
 
             const memoForm = document.getElementById('memoForm');
