@@ -348,3 +348,37 @@ img {
     flex-direction: column;
     justify-content: space-between;
 }
+/* PRODUCT 카드 레이아웃 및 이미지 세로 크기 확정 수정 */
+
+.product-card {
+    display: flex !important;
+    flex-direction: row !important;  /* 좌우 배치 강제 유지 */
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 32px !important;
+}
+
+/* 왼쪽 텍스트 영역 */
+.product-card > div:first-child,
+.product-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+/* 오른쪽 이미지 영역 (가로/세로 비율 제어) */
+.product-card > div:last-child,
+.product-image {
+    flex: 1.3 !important;           /* 이미지 가로 폭 비율 */
+    height: 380px !important;       /* 원하는 세로 높이 설정 */
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* 이미지 원본 강제 늘림 (위아래 세로 길이를 100% 채움) */
+.product-card img {
+    width: 100% !important;
+    height: 380px !important;       /* 세로 높이를 상자 크기에 강제로 맞춤 */
+    max-height: none !important;
+    object-fit: fill !important;    /* 위아래 늘려서 꽉 채움 (잘림 없음) */
+    display: block !important;
+}
