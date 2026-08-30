@@ -1,40 +1,243 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* ========================================
+   RESET & COMMON
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <title>카버 | CNC 맞춤기계 제작 전문기업</title>
-    <meta name="description" content="카버는 정밀 CNC 가공과 맞춤 제작을 전문으로 하는 기업입니다.">
+html {
+    scroll-behavior: smooth;
+}
 
-    <link rel="stylesheet" href="css/style.css">
-</head>
+body {
+    font-family: Arial, "Noto Sans KR", sans-serif;
+    color: #111;
+    background: #fff;
+    line-height: 1.6;
+    word-break: keep-all;
+}
 
-<body>
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container header-inner">
+.container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+}
 
-            <a href="index.html" class="logo">
-                CARVER
-            </a>
+.section {
+    padding: 100px 0;
+}
 
-            <nav class="nav">
-                <a href="#about">회사소개</a>
-                <a href="#product">제품소개</a>
-                <a href="#service">사업소개</a>
-                <a href="#portfolio">포트폴리오</a>
-                <a href="#contact">문의하기</a>
-            </nav>
+.section-label {
+    margin-bottom: 12px;
+    color: #777;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
 
-            <button type="button" class="menu-button" aria-label="메뉴 열기">
-                ☰
-            </button>
+.section-title {
+    margin-bottom: 40px;
+}
 
-        </div>
-    </header>
+.section-title h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
 
+/* BUTTONS */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 50px;
+    padding: 0 24px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.button-white { color: #111; background: #fff; }
+.button-white:hover { background: #ddd; }
+.button-outline { color: #fff; border: 1px solid rgba(255, 255, 255, 0.6); }
+.button-outline:hover { color: #111; background: #fff; }
+.button-dark { color: #fff; background: #111; }
+.button-dark:hover { background: #333; }
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.menu-button { display: none; }
+
+/* HERO */
+.hero {
+    min-height: 600px;
+    padding-top: 80px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background: #111;
+}
+
+.hero-label { margin-bottom: 16px; font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #ff4d4d; }
+.hero h1 { margin-bottom: 20px; font-size: clamp(32px, 5vw, 64px); line-height: 1.2; }
+.hero-description { margin-bottom: 30px; color: #aaa; font-size: 18px; }
+.hero-buttons { display: flex; gap: 12px; }
+
+/* ABOUT */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.about-text p { margin-bottom: 20px; color: #555; font-size: 17px; }
+.text-link { display: inline-block; font-weight: 700; border-bottom: 1px solid #111; margin-top: 10px; }
+.about-number { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+.about-number strong { font-size: 90px; line-height: 0.8; color: #eee; }
+.about-number span { font-size: 13px; font-weight: 700; letter-spacing: 2px; }
+
+/* PRODUCT SECTION (가로형 카드 방식) */
+.product { background: #f8f9fa; }
+.product-grid { display: flex; flex-direction: column; gap: 32px; }
+
+.product-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.product-card-info { flex: 1; }
+.product-card-label { font-size: 12px; font-weight: 700; color: #ff4d4d; margin-bottom: 8px; display: block; }
+.product-card-info h3 { font-size: 24px; margin-bottom: 12px; }
+.product-card-info p { color: #666; margin-bottom: 20px; font-size: 15px; }
+
+.product-card-specs { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+.product-card-specs span { color: #888; margin-right: 10px; font-weight: 600; }
+
+.product-card-image {
+    flex: 1;
+    height: 240px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+.placeholder-graphic {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* PORTFOLIO SECTION (새로운 모던 그리드 카드) */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.portfolio-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.portfolio-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.portfolio-visual {
+    width: 100%;
+    height: 180px;
+    background: #111;
+}
+
+.portfolio-visual svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.portfolio-body {
+    padding: 20px;
+}
+
+.portfolio-body h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.portfolio-body p {
+    color: #888;
+    font-size: 13px;
+}
+
+/* CONTACT & FOOTER */
+.contact { background: #111; color: #fff; padding: 80px 0; }
+.contact-inner { display: flex; justify-content: space-between; align-items: center; }
+.contact h2 { font-size: 32px; margin-bottom: 8px; }
+.contact p { color: #aaa; }
+
+.footer { background: #0a0a0a; color: #666; padding: 40px 0; text-align: center; font-size: 14px; }
+.footer-logo { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.copyright { margin-top: 16px; color: #444; font-size: 12px; }
 
     <!-- MAIN -->
     <main>
