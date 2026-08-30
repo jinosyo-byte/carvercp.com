@@ -30,7 +30,6 @@ button {
     font-family: inherit;
 }
 
-/* 이미지 기본 설정 (크기 통일 설정은 개별 클래스에서 object-fit 적용) */
 img {
     max-width: 100%;
     height: auto;
@@ -266,7 +265,7 @@ img {
 
 
 /* ========================================
-   PRODUCT (좌측: 설명 / 우측: 이미지) - 통일 규격 수정
+   PRODUCT (좌측: 설명 / 우측: 이미지) - 최종 수정
 ======================================== */
 
 .product {
@@ -280,6 +279,7 @@ img {
     margin-top: 40px;
 }
 
+/* 카드 높이 통일 및 내부 정렬 */
 .product-card {
     background-color: #fff;
     border: 1px solid #e5e7eb;
@@ -290,58 +290,9 @@ img {
     align-items: center;
     gap: 32px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    min-height: 280px; /* 모든 카드의 최소 높이 동일 설정 */
+    min-height: 340px; /* 모든 카드 상자의 높이 통일 */
 }
 
-/* 좌측 텍스트와 우측 이미지 영역 50:50 분할 */
-.product-card > div,
-.product-card > figure,
-.product-card > img {
-    flex: 1;
-    width: 50%;
-}
-
-/* 카드 내 이미지 규격 통일 (비율 유지하며 고정 영역에 맞춤) */
-.product-card img {
-    width: 100%;
-    height: 240px;       /* 고정 이미지 높이 */
-    object-fit: cover;   /* 이미지가 찌그러지지 않고 정해진 크기에 맞게 채워짐 */
-    border-radius: 8px;
-}
-
-
-/* ========================================
-   PORTFOLIO / GRID (3열/4열 등 일반 카드 대응)
-======================================== */
-
-.portfolio-grid,
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-}
-
-.grid-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* 부모 그리드의 높이에 맞춤 */
-}
-
-.grid-card img {
-    width: 100%;
-    height: 220px;       /* 세로형 카드의 고정 이미지 높이 */
-    object-fit: cover;
-}
-
-.grid-card-body {
-    padding: 24px;
-    flex: 1;             /* 남은 높이를 동일하게 차지하도록 설정 */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+/* 좌측 텍스트 영역 */
+.product-info {
+    flex: 1
