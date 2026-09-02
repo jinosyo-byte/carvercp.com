@@ -34,7 +34,81 @@
             max-width: 760px !important;
             margin: 0 auto !important;
             background: #ffffff !important;
+            padding: 40px !important;
             border-radius: 12px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        footer h3 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+        footer p {
+            margin: 5px 0;
+            color: #888888;
+            font-size: 14px;
+        }
+        .counter-box {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 영역 -->
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #eee;">
+        <h1 style="margin: 0; font-size: 24px; letter-spacing: 2px;">CARVER</h1>
+        <nav style="display: flex; gap: 20px; font-weight: bold; font-size: 14px;">
+            <a href="#about" style="text-decoration: none; color: #333;">회사소개</a>
+            <a href="#business" style="text-decoration: none; color: #333;">사업소개</a>
+            <a href="#products" style="text-decoration: none; color: #333;">제품소개</a>
+            <a href="#portfolio" style="text-decoration: none; color: #333;">포트폴리오</a>
+            <a href="#contact" style="text-decoration: none; color: #333;">문의하기</a>
+        </nav>
+    </header>
+
+    <!-- 문의하기 섹션 예시 -->
+    <section id="contact" class="contact-section-custom">
+        <div class="contact-card">
+            <h2 style="text-align: center; margin-bottom: 30px;">문의 남기기 (비공개)</h2>
+            <form style="display: flex; flex-direction: column; gap: 15px;">
+                <textarea rows="5" placeholder="가공 규격, 작업 크기, 원하시는 사양을 남겨주세요." style="width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;"></textarea>
+                <button type="button" style="background: #000; color: #fff; padding: 15px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">문의 남기기 (비공개)</button>
+            </form>
+
+            <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
+                <h3 style="font-size: 16px; margin-bottom: 15px;">등록된 문의 목록</h3>
+                <p style="text-align: center; color: #999; margin: 40px 0;">등록된 문의 내역이 없습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 영역 (방문자 카운터 적용 완료) -->
+    <footer>
+        <h3>CARVER</h3>
+        <p>CNC 맞춤 제작 전문기업 카버</p>
+
+        <!-- 실시간 동작하는 방문자 수 카운터 뱃지 -->
+        <div class="counter-box">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcarvercp.com&count_bg=%23333333&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=false" alt="실시간 방문자 수 카운터">
+        </div>
+
+        <p style="color: #555555; font-size: 12px; margin-top: 15px;">© 2026 CARVER. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>            border-radius: 12px !important;
             padding: 40px !important;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
             border: 1px solid #e9ecef !important;
