@@ -7,6 +7,14 @@
     <meta name="description" content="카버는 정밀 CNC 가공과 맞춤 제작을 전문으로 하는 기업입니다.">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        /* 기본 레이아웃 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+        }
+
         /* 추가 반응형 및 커스텀 스타일 */
         .service-grid {
             display: grid;
@@ -37,83 +45,10 @@
             padding: 40px !important;
             border-radius: 12px !important;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-        }
-
-        /* 푸터 스타일 */
-        footer {
-            background-color: #000000;
-            color: #ffffff;
-            text-align: center;
-            padding: 50px 20px;
-        }
-        footer h3 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            letter-spacing: 2px;
-        }
-        footer p {
-            margin: 5px 0;
-            color: #888888;
-            font-size: 14px;
-        }
-        .counter-box {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 헤더 영역 -->
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #eee;">
-        <h1 style="margin: 0; font-size: 24px; letter-spacing: 2px;">CARVER</h1>
-        <nav style="display: flex; gap: 20px; font-weight: bold; font-size: 14px;">
-            <a href="#about" style="text-decoration: none; color: #333;">회사소개</a>
-            <a href="#business" style="text-decoration: none; color: #333;">사업소개</a>
-            <a href="#products" style="text-decoration: none; color: #333;">제품소개</a>
-            <a href="#portfolio" style="text-decoration: none; color: #333;">포트폴리오</a>
-            <a href="#contact" style="text-decoration: none; color: #333;">문의하기</a>
-        </nav>
-    </header>
-
-    <!-- 문의하기 섹션 예시 -->
-    <section id="contact" class="contact-section-custom">
-        <div class="contact-card">
-            <h2 style="text-align: center; margin-bottom: 30px;">문의 남기기 (비공개)</h2>
-            <form style="display: flex; flex-direction: column; gap: 15px;">
-                <textarea rows="5" placeholder="가공 규격, 작업 크기, 원하시는 사양을 남겨주세요." style="width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;"></textarea>
-                <button type="button" style="background: #000; color: #fff; padding: 15px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">문의 남기기 (비공개)</button>
-            </form>
-
-            <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
-                <h3 style="font-size: 16px; margin-bottom: 15px;">등록된 문의 목록</h3>
-                <p style="text-align: center; color: #999; margin: 40px 0;">등록된 문의 내역이 없습니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 푸터 영역 (방문자 카운터 적용 완료) -->
-    <footer>
-        <h3>CARVER</h3>
-        <p>CNC 맞춤 제작 전문기업 카버</p>
-
-        <!-- 실시간 동작하는 방문자 수 카운터 뱃지 -->
-        <div class="counter-box">
-            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcarvercp.com&count_bg=%23333333&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=false" alt="실시간 방문자 수 카운터">
-        </div>
-
-        <p style="color: #555555; font-size: 12px; margin-top: 15px;">© 2026 CARVER. All Rights Reserved.</p>
-    </footer>
-
-</body>
-</html>            border-radius: 12px !important;
-            padding: 40px !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
             border: 1px solid #e9ecef !important;
             box-sizing: border-box !important;
         }
+
         .form-row {
             display: flex !important;
             gap: 16px !important;
@@ -148,7 +83,7 @@
             transition: border-color 0.2s, box-shadow 0.2s !important;
             background-color: #fff !important;
             color: #333 !important;
-            -webkit-appearance: none;
+            -webkit-appearance: none !important;
         }
         .input-custom:focus, .textarea-custom:focus {
             border-color: #111 !important;
@@ -167,7 +102,7 @@
             transition: background-color 0.2s !important;
         }
         .btn-submit-custom:hover {
-            background-color: #ff4d4d !important;
+            background-color: #4f4d4d !important;
         }
         .memo-divider {
             margin: 40px 0 30px 0 !important;
@@ -189,319 +124,95 @@
             color: #111 !important;
         }
 
-        /* 📱 모바일 디바이스(768px 이하) 대응 스타일 */
+        /* 모바일 디바이스(768px 이하) 대응 스타일 */
         @media (max-width: 768px) {
-            .menu-button {
-                display: block !important;
-                background: none;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
-            }
-            .nav {
-                display: none;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: #fff;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
-                border-top: 1px solid #eee;
-            }
-            .nav.active {
-                display: flex !important;
-            }
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-section-custom {
-                padding: 50px 15px !important;
-            }
-            .contact-card {
-                padding: 24px 16px !important;
-                border-radius: 10px !important;
-            }
-            .form-row {
-                flex-direction: column !important;
-                gap: 16px !important;
-                margin-bottom: 16px !important;
-            }
-            .admin-header-custom {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-            }
-            .admin-header-custom #adminAuthArea {
-                width: 100% !important;
-                justify-content: space-between !important;
-            }
-            .admin-header-custom #adminAuthArea input {
-                flex: 1 !important;
-            }
-            .section-title h2 {
-                font-size: 26px !important;
-            }
+            .service-grid { grid-template-columns: 1fr; }
+            .contact-section-custom { padding: 50px 15px !important; }
+            .contact-card { padding: 24px 16px !important; border-radius: 10px !important; }
+            .form-row { flex-direction: column !important; gap: 16px !important; margin-bottom: 16px !important; }
+            .admin-header-custom { flex-direction: column !important; align-items: flex-start !important; }
+            .admin-header-custom #adminAuthArea { width: 100% !important; justify-content: space-between !important; }
+            .admin-header-custom #adminAuthArea input { flex: 1 !important; }
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        footer h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+        }
+        footer p {
+            margin: 4px 0;
+            color: #888888;
+            font-size: 13px;
+        }
+        .counter-box {
+            margin: 18px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo">CARVER</a>
-            <nav class="nav" id="mainNav">
-                <a href="index.html#about">회사소개</a>
-                <a href="index.html#service">사업소개</a>
-                <a href="product.html">제품소개</a>
-                <a href="portfolio.html">포트폴리오</a>
-                <a href="index.html#contact">문의하기</a>
-            </nav>
-            <button type="button" class="menu-button" id="menuToggle" aria-label="메뉴 열기">☰</button>
-        </div>
+    <!-- 헤더 영역 -->
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #eee;">
+        <h1 style="margin: 0; font-size: 24px; letter-spacing: 2px;">CARVER</h1>
+        <nav style="display: flex; gap: 20px; font-weight: bold; font-size: 14px;">
+            <a href="#about" style="text-decoration: none; color: #333;">회사소개</a>
+            <a href="#business" style="text-decoration: none; color: #333;">사업소개</a>
+            <a href="#products" style="text-decoration: none; color: #333;">제품소개</a>
+            <a href="#portfolio" style="text-decoration: none; color: #333;">포트폴리오</a>
+            <a href="#contact" style="text-decoration: none; color: #333;">문의하기</a>
+        </nav>
     </header>
 
-    <main>
-        <!-- HERO -->
-        <section class="hero">
-            <div class="container hero-content">
-                <p class="hero-label">CARVER · FOAM MACHINE</p>
-                <h1>스티로폼 가공에 관한 모든 가공기를<br>제작·판매합니다.</h1>
-                <p class="hero-description">카버는 스티로폼 전용 가공기를 100% 국내 기술과 제작으로 만들어갑니다.</p>
-                <div class="hero-buttons">
-                    <a href="product.html" class="button button-white">제품 살펴보기</a>
-                    <a href="portfolio.html" class="button button-outline">포트폴리오 보기</a>
+    <!-- 문의하기 섹션 -->
+    <section id="contact" class="contact-section-custom">
+        <div class="contact-card">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 22px;">문의 남기기 (비공개)</h2>
+            
+            <form style="display: flex; flex-direction: column;">
+                <div class="form-col-full">
+                    <label class="form-label-custom">문의 내용 *</label>
+                    <textarea class="textarea-custom" rows="5" placeholder="가공 규격, 작업 크기, 원하시는 사양을 남겨주세요."></textarea>
+                </div>
+                <button type="button" class="btn-submit-custom">문의 남기기 (비공개)</button>
+            </form>
+
+            <hr class="memo-divider">
+
+            <div class="admin-header-custom">
+                <h3>등록된 문의 목록</h3>
+                <div id="adminAuthArea" style="display: flex; gap: 8px;">
+                    <input type="password" class="input-custom" placeholder="관리자 비밀번호" style="width: 140px; padding: 8px 12px !important;">
+                    <button type="button" class="btn-submit-custom" style="padding: 8px 16px !important; font-size: 13px !important; width: auto !important;">관리자 확인</button>
                 </div>
             </div>
-        </section>
-
-        <!-- 1. 회사소개 (ABOUT) -->
-        <section id="about" class="section about">
-            <div class="container">
-                <div class="section-title">
-                    <p class="section-label">ABOUT CARVER</p>
-                    <h2>스티로폼 가공을 위한<br>최적의 장비를 만듭니다.</h2>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>카버는 스티로폼 전용 가공기를 전문적으로 제작하는 제조기업입니다.</p>
-                        <p>고객의 작업환경과 목적에 맞춰 장비를 주문제작하며, 모든 제품을 국내에서 직접 제작하고 있습니다.</p>
-                        <a href="#contact" class="text-link">카버에 제작 문의하기 →</a>
-                    </div>
-                    <div class="about-number">
-                        <strong>01</strong>
-                        <span>PRECISION<br>& QUALITY</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. 사업소개 (SERVICE) -->
-        <section id="service" class="section service">
-            <div class="container">
-                <div class="section-title">
-                    <p class="section-label">OUR BUSINESS</p>
-                    <h2>카버의 주요 사업</h2>
-                </div>
-                <div class="service-grid">
-                    <div class="service-card">
-                        <h3>CNC 맞춤 장비 설계/제작</h3>
-                        <p>작업 목적과 설치 공간에 맞춘 100% 맞춤형 CNC 시스템을 설계 및 제작합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>스티로폼 전용 가공기 개발</h3>
-                        <p>열선 커팅, 3축/4축/5축 제어 스티로폼 가공에 최적화된 장비를 제공합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>유지보수 및 기술 지원</h3>
-                        <p>국내 직접 제작을 통한 신속한 A/S 및 가공 기술 컨설팅을 지원합니다.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="contact-section-custom">
-            <div class="container">
-                <div class="section-title" style="text-align: center; margin-bottom: 30px;">
-                    <p class="section-label" style="color: #666666 !important; font-weight: 700; letter-spacing: 1px;">GUESTBOOK / CONTACT</p>
-                    <h2 style="font-weight: bold; margin-top: 8px;">장비 제작 문의 게시판</h2>
-                    <p style="margin-top: 10px; color: #666; font-size: 14px;">작성하신 문의는 비공개 처리되며, 관리자만 확인할 수 있습니다.</p>
-                </div>
-
-                <div class="contact-card">
-                    <!-- 문의 작성 폼 -->
-                    <form id="memoForm">
-                        <div class="form-row">
-                            <div class="form-col">
-                                <label for="writer" class="form-label-custom">작성자 / 업체명 *</label>
-                                <input type="text" id="writer" class="input-custom" placeholder="성함 또는 업체명 입력" required>
-                            </div>
-                            <div class="form-col">
-                                <label for="contactInfo" class="form-label-custom">연락처 또는 이메일 *</label>
-                                <input type="text" id="contactInfo" class="input-custom" placeholder="010-0000-0000" required>
-                            </div>
-                        </div>
-
-                        <div class="form-col-full">
-                            <label for="memoContent" class="form-label-custom">문의 내용 *</label>
-                            <textarea id="memoContent" class="textarea-custom" rows="5" placeholder="가공 목적, 작업 크기, 필요한 축 수 등 원하시는 사양을 남겨주세요." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-submit-custom">문의 남기기 (비공개)</button>
-                    </form>
-
-                    <hr class="memo-divider">
-
-                    <!-- 문의 목록 및 관리자 인증 영역 -->
-                    <div class="memo-list-wrapper">
-                        <div class="admin-header-custom">
-                            <h3>등록된 문의 목록</h3>
-                            <div id="adminAuthArea" style="display: flex; gap: 6px; align-items: center;">
-                                <input type="password" id="adminPwInput" class="input-custom" placeholder="관리자 비밀번호" style="width: 140px !important; padding: 8px 12px !important; font-size: 13px !important;">
-                                <button type="button" onclick="checkAdmin()" style="padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; background: #333; color: #fff; border: none; border-radius: 6px; white-space: nowrap;">관리자 확인</button>
-                            </div>
-                        </div>
-
-                        <div id="memoList">
-                            <!-- 비공개 글 목록 들어가는 곳 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">CARVER</div>
-            <p>CNC 맞춤 제작 전문기업 카버</p>
-
-            <!-- 📊 방문자 수 카운터 추가 영역 -->
-            <div style="margin: 18px 0 12px; display: inline-flex; align-items: center; justify-content: center;">
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fyour-domain.com&count_bg=%23ff4d4d&title_bg=%23222222&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=true" alt="방문자 수 카운터" style="vertical-align: middle;">
-            </div>
-
-            <p class="copyright">© 2026 CARVER. All Rights Reserved.</p>
+            
+            <p style="text-align: center; color: #999; margin: 40px 0; font-size: 14px;">등록된 문의 내역이 없습니다.</p>
         </div>
+    </section>
+
+    <!-- 푸터 영역 (실시간 방문자 수 카운터 적용) -->
+    <footer>
+        <h3>CARVER</h3>
+        <p>CNC 맞춤 제작 전문기업 카버</p>
+
+        <!-- 실시간 방문자 카운터 뱃지 -->
+        <div class="counter-box">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcarvercp.com&count_bg=%23333333&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=false" alt="실시간 방문자 수 카운터">
+        </div>
+
+        <p style="color: #555555; font-size: 12px; margin-top: 10px;">© 2026 CARVER. All Rights Reserved.</p>
     </footer>
 
-    <!-- 자바스크립트 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // 모바일 메뉴 토글
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                });
-            }
-
-            // 비공개 메모장 스크립트
-            const ADMIN_PASSWORD = "carver1234";
-            let isAdmin = false;
-
-            const memoForm = document.getElementById('memoForm');
-            const memoList = document.getElementById('memoList');
-
-            window.checkAdmin = function() {
-                const inputPw = document.getElementById('adminPwInput').value;
-                if (inputPw === ADMIN_PASSWORD) {
-                    isAdmin = true;
-                    alert('관리자로 인증되었습니다. 비공개 문의 내용을 확인하실 수 있습니다.');
-                    document.getElementById('adminAuthArea').innerHTML = '<span style="color:#e63946; font-weight:bold; font-size:13px; background:#ffe3e3; padding:6px 12px; border-radius:20px;">● 관리자 로그인 중</span>';
-                    loadMemos();
-                } else {
-                    alert('비밀번호가 일치하지 않습니다.');
-                }
-            };
-
-            function loadMemos() {
-                const memos = JSON.parse(localStorage.getItem('carverMemos')) || [];
-                memoList.innerHTML = '';
-
-                if (memos.length === 0) {
-                    memoList.innerHTML = '<p style="text-align:center; color:#999; padding:30px 0; font-size:14px;">등록된 문의 내역이 없습니다.</p>';
-                    return;
-                }
-
-                memos.forEach((memo, index) => {
-                    const memoItem = document.createElement('div');
-                    memoItem.style.cssText = "background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; margin-bottom: 12px; position: relative; text-align: left;";
-
-                    if (isAdmin) {
-                        memoItem.innerHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                                <strong style="font-size: 15px; color: #111;">${escapeHtml(memo.writer)}</strong>
-                                <span style="font-size: 11px; color: #888;">${memo.date}</span>
-                            </div>
-                            <div style="font-size: 13px; color: #e63946; font-weight: 600; margin-bottom: 8px;">연락처/메일: ${escapeHtml(memo.contactInfo)}</div>
-                            <div style="font-size: 14px; color: #333; line-height: 1.5; white-space: pre-line; background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #eee;">${escapeHtml(memo.content)}</div>
-                            <button onclick="deleteMemo(${index})" style="position: absolute; top: 14px; right: 14px; background: none; border: none; color: #aaa; font-size: 12px; cursor: pointer; text-decoration: underline;">삭제</button>
-                        `;
-                    } else {
-                        memoItem.innerHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <strong style="font-size: 14px; color: #333;">${maskName(memo.writer)}</strong>
-                                <span style="font-size: 11px; color: #aaa;">${memo.date}</span>
-                            </div>
-                            <div style="font-size: 13px; color: #888; margin-top: 6px;">
-                                🔒 비공개 문의글입니다. (관리자만 내용 확인 가능)
-                            </div>
-                        `;
-                    }
-                    memoList.appendChild(memoItem);
-                });
-            }
-
-            memoForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const writer = document.getElementById('writer').value;
-                const contactInfo = document.getElementById('contactInfo').value;
-                const content = document.getElementById('memoContent').value;
-                const date = new Date().toLocaleDateString('ko-KR', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-
-                const memos = JSON.parse(localStorage.getItem('carverMemos')) || [];
-                memos.unshift({ writer, contactInfo, content, date });
-                localStorage.setItem('carverMemos', JSON.stringify(memos));
-
-                alert('문의가 접수되었습니다. 관리자 확인 후 빠른 시일 내에 연락드리겠습니다.');
-                memoForm.reset();
-                loadMemos();
-            });
-
-            window.deleteMemo = function (index) {
-                if (confirm('이 문의글을 삭제하시겠습니까?')) {
-                    const memos = JSON.parse(localStorage.getItem('carverMemos')) || [];
-                    memos.splice(index, 1);
-                    localStorage.setItem('carverMemos', JSON.stringify(memos));
-                    loadMemos();
-                }
-            };
-
-            function maskName(name) {
-                if (name.length <= 1) return name;
-                if (name.length === 2) return name[0] + '*';
-                return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
-            }
-
-            function escapeHtml(str) {
-                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-            }
-
-            loadMemos();
-        });
-    </script>
 </body>
 </html>
