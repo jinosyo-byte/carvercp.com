@@ -6,6 +6,210 @@
     <title>포트폴리오 | 카버 - CNC 맞춤기계 제작 전문기업</title>
     <meta name="description" content="카버의 다양한 CNC 기계 제작 실적 및 포트폴리오를 소개합니다.">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 포트폴리오 전용 커스텀 스타일 */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .portfolio-card {
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(17, 17, 17, 0.85);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            z-index: 2;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-visual {
+            width: 100%;
+            height: 200px;
+            background-color: #f1f3f5;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-visual img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111111;
+            margin: 0 0 6px 0;
+        }
+
+        .portfolio-body p {
+            font-size: 13px;
+            color: #ff4d4d;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .portfolio-body .desc {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* 상세팝업 (모달) 스타일 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modalUp 0.3s ease-out;
+        }
+
+        @keyframes modalUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            z-index: 10;
+        }
+
+        .modal-body {
+            padding: 28px;
+        }
+
+        .modal-body h3 {
+            margin-top: 0;
+            font-size: 22px;
+            color: #111;
+        }
+
+        .modal-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+
+        .modal-info-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .modal-info-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-info-list span.title {
+            color: #888;
+            font-weight: 500;
+        }
+
+        .modal-info-list span.val {
+            color: #111;
+            font-weight: 600;
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 768px) {
+            .menu-button {
+                display: block !important;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            .nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                border-top: 1px solid #eee;
+            }
+            .nav.active {
+                display: flex !important;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -13,14 +217,14 @@
     <header class="header">
         <div class="container header-inner">
             <a href="index.html" class="logo">CARVER</a>
-            <nav class="nav">
+            <nav class="nav" id="mainNav">
                 <a href="index.html#about">회사소개</a>
                 <a href="index.html#service">사업소개</a>
                 <a href="product.html">제품소개</a>
                 <a href="portfolio.html" style="color: #ff4d4d; font-weight: bold;">포트폴리오</a>
                 <a href="index.html#contact">문의하기</a>
             </nav>
-            <button type="button" class="menu-button" aria-label="메뉴 열기">☰</button>
+            <button type="button" class="menu-button" id="menuToggle" aria-label="메뉴 열기">☰</button>
         </div>
     </header>
 
@@ -36,50 +240,62 @@
 
                 <div class="portfolio-grid">
                     <!-- PROJECT 01 -->
-                    <div class="portfolio-card">
+                    <div class="portfolio-card" onclick="openModal('PROJECT 01', '열선커팅기 작업 결과물', 'Precision Machining', '스티로폼 열선 가공 전용 커팅기', '3000 x 2000 mm', '스티로폼 단열재 및 조형물 제작업체')">
                         <div class="portfolio-badge">PROJECT 01</div>
                         <div class="portfolio-visual">
-                            <img src="images/portfolio01.jpg" alt="열선커팅기 작업 결과물">
+                            <img src="images/portfolio01.jpg" alt="열선커팅기 작업 결과물" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 01 이미지</text></svg>';">
                         </div>
                         <div class="portfolio-body">
-                            <h3>열선커팅기 작업 결과물</h3>
-                            <p>Precision Machining</p>
+                            <div>
+                                <h3>열선커팅기 작업 결과물</h3>
+                                <p>Precision Machining</p>
+                                <div class="desc">고정밀 열선 제어로 깨끗한 절단면을 구현한 맞춤형 가공 실적입니다.</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- PROJECT 02 -->
-                    <div class="portfolio-card">
+                    <div class="portfolio-card" onclick="openModal('PROJECT 02', '스티로폼 맞춤 가공기 제작', 'Custom Parts', '4축 스티로폼 CNC 가공기', '2400 x 1200 mm', '디자인 조형물 제작 전문기업')">
                         <div class="portfolio-badge">PROJECT 02</div>
                         <div class="portfolio-visual">
-                            <img src="images/portfolio02.jpg" alt="스티로폼 맞춤 가공기 제작">
+                            <img src="images/portfolio02.jpg" alt="스티로폼 맞춤 가공기 제작" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 02 이미지</text></svg>';">
                         </div>
                         <div class="portfolio-body">
-                            <h3>스티로폼 맞춤 가공기 제작</h3>
-                            <p>Custom Parts</p>
+                            <div>
+                                <h3>스티로폼 맞춤 가공기 제작</h3>
+                                <p>Custom Parts</p>
+                                <div class="desc">고객사 작업장 환경에 최적화된 스티로폼 전용 대형 3D 가공 장비입니다.</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- PROJECT 03 -->
-                    <div class="portfolio-card">
+                    <div class="portfolio-card" onclick="openModal('PROJECT 03', '그외 가공기 주문 제작', 'Custom Manufacturing', '다목적 특수 가공기', '주문제작 사양', '산업용 부품 제조회사')">
                         <div class="portfolio-badge">PROJECT 03</div>
                         <div class="portfolio-visual">
-                            <img src="images/portfolio03.jpg" alt="그외 가공기 주문 제작">
+                            <img src="images/portfolio03.jpg" alt="그외 가공기 주문 제작" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 03 이미지</text></svg>';">
                         </div>
                         <div class="portfolio-body">
-                            <h3>그외 가공기 주문 제작</h3>
-                            <p>Custom Manufacturing</p>
+                            <div>
+                                <h3>그외 가공기 주문 제작</h3>
+                                <p>Custom Manufacturing</p>
+                                <div class="desc">특수 소재 절단 및 맞춤 공정을 위해 100% 자체 기술로 설계 및 제작된 기계입니다.</div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- PROJECT 04 -->
-                    <div class="portfolio-card">
+                    <div class="portfolio-card" onclick="openModal('PROJECT 04', '정밀 부품 가공', 'Precision Parts', '고정밀 부품 CNC 가공기', '미세 오차 범위 내 제어', '정밀 부품 가공업체')">
                         <div class="portfolio-badge">PROJECT 04</div>
                         <div class="portfolio-visual">
-                            <img src="images/portfolio04.jpg" alt="정밀 부품 가공">
+                            <img src="images/portfolio04.jpg" alt="정밀 부품 가공" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 04 이미지</text></svg>';">
                         </div>
                         <div class="portfolio-body">
-                            <h3>정밀 부품 가공</h3>
-                            <p>Precision Parts</p>
+                            <div>
+                                <h3>정밀 부품 가공</h3>
+                                <p>Precision Parts</p>
+                                <div class="desc">오차 범위를 극소화하여 복잡한 형상의 정밀 부품 가공을 완료한 사례입니다.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,25 +303,83 @@
         </section>
 
         <!-- CONTACT BANNER -->
-        <section class="contact">
-            <div class="container contact-inner">
+        <section class="contact" style="background: #f8f9fa; padding: 60px 0; border-top: 1px solid #eee; margin-top: 60px;">
+            <div class="container contact-inner" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
                 <div>
-                    <p class="section-label">CONTACT</p>
-                    <h2>유사한 장비 제작이 필요하신가요?</h2>
-                    <p>작업 환경 및 요구 사양에 맞춰 최적의 장비를 설계해 드립니다.</p>
+                    <p class="section-label" style="color: #ff4d4d; font-weight: bold; margin-bottom: 8px;">CONTACT</p>
+                    <h2 style="margin: 0 0 10px 0; font-size: 24px;">유사한 장비 제작이 필요하신가요?</h2>
+                    <p style="margin: 0; color: #666;">작업 환경 및 요구 사양에 맞춰 최적의 장비를 설계해 드립니다.</p>
                 </div>
-                <a href="index.html#contact" class="button button-dark">제작 문의하기</a>
+                <a href="index.html#contact" class="button button-dark" style="background: #111; color: #fff; padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: bold;">제작 문의하기</a>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">CARVER</div>
-            <p>CNC 맞춤 제작 전문기업 카버</p>
-            <p class="copyright">© 2026 CARVER. All Rights Reserved.</p>
+    <footer class="footer" style="padding: 40px 0; border-top: 1px solid #eee;">
+        <div class="container" style="text-align: center;">
+            <div class="footer-logo" style="font-weight: bold; font-size: 20px; margin-bottom: 8px;">CARVER</div>
+            <p style="color: #666; font-size: 14px; margin-bottom: 12px;">CNC 맞춤 제작 전문기업 카버</p>
+            <p class="copyright" style="color: #999; font-size: 12px;">© 2026 CARVER. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- 상세보기 모달 팝업 -->
+    <div class="modal-overlay" id="portfolioModal" onclick="closeModal(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+            <div class="modal-body">
+                <span id="modalBadge" style="font-size: 12px; color: #ff4d4d; font-weight: bold;">PROJECT 01</span>
+                <h3 id="modalTitle" style="margin-top: 4px;">프로젝트 제목</h3>
+                <p id="modalCategory" style="color: #666; font-size: 14px; margin-bottom: 16px;">Category</p>
+                
+                <ul class="modal-info-list">
+                    <li><span class="title">장비 종류</span><span class="val" id="modalType">-</span></li>
+                    <li><span class="title">가공 범위/크기</span><span class="val" id="modalSize">-</span></li>
+                    <li><span class="title">납품처/분야</span><span class="val" id="modalTarget">-</span></li>
+                </ul>
+
+                <a href="index.html#contact" style="display: block; width: 100%; text-align: center; background: #111; color: #fff; padding: 12px 0; border-radius: 6px; text-decoration: none; font-weight: bold; box-sizing: border-box;">이와 동일한 사양 문의하기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 자바스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 모바일 메뉴 토글
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+
+        // 모달 열기 함수
+        function openModal(badge, title, category, type, size, target) {
+            document.getElementById('modalBadge').innerText = badge;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalCategory').innerText = category;
+            document.getElementById('modalType').innerText = type;
+            document.getElementById('modalSize').innerText = size;
+            document.getElementById('modalTarget').innerText = target;
+
+            document.getElementById('portfolioModal').style.display = 'flex';
+        }
+
+        // 모달 닫기 함수
+        function closeModal(event) {
+            if (event.target === document.getElementById('portfolioModal')) {
+                document.getElementById('portfolioModal').style.display = 'none';
+            }
+        }
+
+        function closeModalDirect() {
+            document.getElementById('portfolioModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
