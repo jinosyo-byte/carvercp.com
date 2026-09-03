@@ -117,8 +117,9 @@
             background: #ffffff;
             width: 100%;
             max-width: 600px;
+            max-height: 90vh;
             border-radius: 12px;
-            overflow: hidden;
+            overflow-y: auto;
             position: relative;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             animation: modalUp 0.3s ease-out;
@@ -133,16 +134,40 @@
             position: absolute;
             top: 12px;
             right: 16px;
-            background: none;
+            background: rgba(0, 0, 0, 0.5);
             border: none;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
-            color: #333;
+            color: #fff;
             z-index: 10;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 모달 내 확대 이미지 영역 */
+        .modal-image-container {
+            width: 100%;
+            max-height: 360px;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            max-height: 360px;
+            object-fit: contain;
         }
 
         .modal-body {
-            padding: 28px;
+            padding: 24px;
         }
 
         .modal-body h3 {
@@ -240,7 +265,7 @@
 
                 <div class="portfolio-grid">
                     <!-- PROJECT 01 -->
-                    <div class="portfolio-card" onclick="openModal('PROJECT 01', '열선커팅기 작업 결과물', 'Precision Machining', '스티로폼 열선 가공 전용 커팅기', '3000 x 2000 mm', '스티로폼 단열재 및 조형물 제작업체')">
+                    <div class="portfolio-card" onclick="openModal('images/project01.jpg', 'PROJECT 01', '열선커팅기 작업 결과물', 'Precision Machining', '스티로폼 열선 가공 전용 커팅기', '3000 x 2000 mm', '스티로폼 단열재 및 조형물 제작업체')">
                         <div class="portfolio-badge">PROJECT 01</div>
                         <div class="portfolio-visual">
                             <img src="images/project01.jpg" alt="열선커팅기 작업 결과물" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 01</text></svg>';">
@@ -255,7 +280,7 @@
                     </div>
 
                     <!-- PROJECT 02 -->
-                    <div class="portfolio-card" onclick="openModal('PROJECT 02', '스티로폼 맞춤 가공기 제작', 'Custom Parts', '4축 스티로폼 CNC 가공기', '2400 x 1200 mm', '디자인 조형물 제작 전문기업')">
+                    <div class="portfolio-card" onclick="openModal('images/project02.jpg', 'PROJECT 02', '스티로폼 맞춤 가공기 제작', 'Custom Parts', '4축 스티로폼 CNC 가공기', '2400 x 1200 mm', '디자인 조형물 제작 전문기업')">
                         <div class="portfolio-badge">PROJECT 02</div>
                         <div class="portfolio-visual">
                             <img src="images/project02.jpg" alt="스티로폼 맞춤 가공기 제작" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 02</text></svg>';">
@@ -270,7 +295,7 @@
                     </div>
 
                     <!-- PROJECT 03 -->
-                    <div class="portfolio-card" onclick="openModal('PROJECT 03', '그외 가공기 주문 제작', 'Custom Manufacturing', '다목적 특수 가공기', '주문제작 사양', '산업용 부품 제조회사')">
+                    <div class="portfolio-card" onclick="openModal('images/project01-3.jpg', 'PROJECT 03', '그외 가공기 주문 제작', 'Custom Manufacturing', '다목적 특수 가공기', '주문제작 사양', '산업용 부품 제조회사')">
                         <div class="portfolio-badge">PROJECT 03</div>
                         <div class="portfolio-visual">
                             <img src="images/project01-3.jpg" alt="그외 가공기 주문 제작" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 03</text></svg>';">
@@ -285,7 +310,7 @@
                     </div>
 
                     <!-- PROJECT 04 -->
-                    <div class="portfolio-card" onclick="openModal('PROJECT 04', '정밀 부품 가공', 'Precision Parts', '고정밀 부품 CNC 가공기', '미세 오차 범위 내 제어', '정밀 부품 가공업체')">
+                    <div class="portfolio-card" onclick="openModal('images/project01-4.jpg', 'PROJECT 04', '정밀 부품 가공', 'Precision Parts', '고정밀 부품 CNC 가공기', '미세 오차 범위 내 제어', '정밀 부품 가공업체')">
                         <div class="portfolio-badge">PROJECT 04</div>
                         <div class="portfolio-visual">
                             <img src="images/project01-4.jpg" alt="정밀 부품 가공" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 04</text></svg>';">
@@ -300,7 +325,7 @@
                     </div>
 
                     <!-- PROJECT 05 -->
-                    <div class="portfolio-card" onclick="openModal('PROJECT 05', '맞춤형 산업용 가공기', 'Custom System', '산업용 맞춤 제어 기계', '고객 요구사양에 맞춤', '국내 대형 가공 공장')">
+                    <div class="portfolio-card" onclick="openModal('images/project01-5.jpg', 'PROJECT 05', '맞춤형 산업용 가공기', 'Custom System', '산업용 맞춤 제어 기계', '고객 요구사양에 맞춤', '국내 대형 가공 공장')">
                         <div class="portfolio-badge">PROJECT 05</div>
                         <div class="portfolio-visual">
                             <img src="images/project01-5.jpg" alt="맞춤형 산업용 가공기" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 250\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f3f5\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'16\'>PROJECT 05</text></svg>';">
@@ -343,6 +368,9 @@
     <div class="modal-overlay" id="portfolioModal" onclick="closeModal(event)">
         <div class="modal-card">
             <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="확대 이미지">
+            </div>
             <div class="modal-body">
                 <span id="modalBadge" style="font-size: 12px; color: #ff4d4d; font-weight: bold;">PROJECT 01</span>
                 <h3 id="modalTitle" style="margin-top: 4px;">프로젝트 제목</h3>
@@ -373,8 +401,9 @@
             }
         });
 
-        // 모달 열기 함수
-        function openModal(badge, title, category, type, size, target) {
+        // 모달 열기 함수 (이미지 경로 파라미터 추가)
+        function openModal(imgSrc, badge, title, category, type, size, target) {
+            document.getElementById('modalImage').src = imgSrc;
             document.getElementById('modalBadge').innerText = badge;
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalCategory').innerText = category;
